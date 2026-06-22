@@ -5,15 +5,26 @@ export default function ConsultantWebsite() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (email) {
+      // In production, send this to your email service (Mailchimp, etc.)
+      console.log('Newsletter signup:', email);
       setSubscribed(true);
       setTimeout(() => {
         setEmail('');
         setSubscribed(false);
       }, 3000);
+    }
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
     }
   };
 
@@ -26,11 +37,11 @@ export default function ConsultantWebsite() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center">
-            <a href="#expertise" className="text-sm font-medium hover:text-blue-700 transition">Expertise</a>
-            <a href="#impact" className="text-sm font-medium hover:text-blue-700 transition">Impact</a>
-            <a href="#services" className="text-sm font-medium hover:text-blue-700 transition">Services</a>
-            <a href="#resources" className="text-sm font-medium hover:text-blue-700 transition">Resources</a>
-            <button className="bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
+            <button onClick={() => scrollToSection('expertise')} className="text-sm font-medium hover:text-blue-700 transition">Expertise</button>
+            <button onClick={() => scrollToSection('impact')} className="text-sm font-medium hover:text-blue-700 transition">Impact</button>
+            <button onClick={() => scrollToSection('services')} className="text-sm font-medium hover:text-blue-700 transition">Services</button>
+            <button onClick={() => scrollToSection('resources')} className="text-sm font-medium hover:text-blue-700 transition">Resources</button>
+            <button onClick={() => setShowCalendly(true)} className="bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
               Schedule Call
             </button>
           </div>
@@ -44,14 +55,37 @@ export default function ConsultantWebsite() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-slate-200 p-4 space-y-3">
-            <a href="#expertise" className="block text-sm font-medium py-2">Expertise</a>
-            <a href="#impact" className="block text-sm font-medium py-2">Impact</a>
-            <a href="#services" className="block text-sm font-medium py-2">Services</a>
-            <a href="#resources" className="block text-sm font-medium py-2">Resources</a>
-            <button className="w-full bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium">Schedule Call</button>
+            <button onClick={() => scrollToSection('expertise')} className="block text-sm font-medium py-2 w-full text-left">Expertise</button>
+            <button onClick={() => scrollToSection('impact')} className="block text-sm font-medium py-2 w-full text-left">Impact</button>
+            <button onClick={() => scrollToSection('services')} className="block text-sm font-medium py-2 w-full text-left">Services</button>
+            <button onClick={() => scrollToSection('resources')} className="block text-sm font-medium py-2 w-full text-left">Resources</button>
+            <button onClick={() => {setShowCalendly(true); setMobileMenuOpen(false);}} className="w-full bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium">Schedule Call</button>
           </div>
         )}
       </nav>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button
+              onClick={() => setShowCalendly(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+            >
+              <X size={24} />
+            </button>
+            
+            <div className="p-6">
+              <h2 className="text-2xl font-bold mb-4">Schedule a Consultation</h2>
+              <p className="text-slate-600 mb-6">Book a free 30-minute call with me to discuss your HR transformation needs.</p>
+              
+              {/* Calendly Embed */}
+              <div className="calendly-inline-widget" data-url="https://calendly.com/senmohasay/30min" style={{minWidth:'320px', height:'630px'}}></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -72,10 +106,16 @@ export default function ConsultantWebsite() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button className="bg-blue-700 text-white px-8 py-4 rounded-lg font-medium hover:bg-blue-800 transition flex items-center justify-center gap-2">
+            <button 
+              onClick={() => setShowCalendly(true)}
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-medium hover:bg-blue-800 transition flex items-center justify-center gap-2"
+            >
               Free Transformation Audit <ChevronRight size={20} />
             </button>
-            <button className="border-2 border-blue-700 text-blue-700 px-8 py-4 rounded-lg font-medium hover:bg-blue-50 transition">
+            <button 
+              onClick={() => scrollToSection('impact')}
+              className="border-2 border-blue-700 text-blue-700 px-8 py-4 rounded-lg font-medium hover:bg-blue-50 transition"
+            >
               View Case Studies
             </button>
           </div>
@@ -245,7 +285,10 @@ export default function ConsultantWebsite() {
           </div>
 
           <div className="mt-12 text-center">
-            <button className="bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition">
+            <button 
+              onClick={() => setShowCalendly(true)}
+              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition"
+            >
               Schedule Consultation
             </button>
           </div>
@@ -265,9 +308,12 @@ export default function ConsultantWebsite() {
               <BookOpen size={32} className="mb-4" />
               <h3 className="text-2xl font-bold mb-3">Online Courses</h3>
               <p className="mb-6 text-blue-100">Master HR transformation from vendor selection to delivery. Self-paced video courses with certification.</p>
-              <button className="bg-white text-blue-700 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition">
+              <a 
+                href="/" 
+                className="inline-block bg-white text-blue-700 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition"
+              >
                 Explore Courses
-              </button>
+              </a>
             </div>
 
             <div className="bg-gradient-to-br from-blue-50 to-slate-100 border-2 border-blue-700 p-8 rounded-xl">
@@ -280,6 +326,7 @@ export default function ConsultantWebsite() {
                   placeholder="Your email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="w-full px-4 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-blue-500"
                 />
                 <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded-lg font-medium hover:bg-blue-800 transition">
@@ -294,14 +341,18 @@ export default function ConsultantWebsite() {
             <h3 className="text-2xl font-bold mb-8">Latest Articles</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { title: 'SAP SF vs Workday: A 2024 Comparison', date: 'March 2024' },
-                { title: 'Building Effective Test Strategies for HCM Transformations', date: 'February 2024' },
-                { title: 'Why 60% of HCM Projects Face Quality Issues (And How to Avoid It)', date: 'January 2024' }
+                { title: 'SAP SF vs Workday: A 2024 Comparison', date: 'March 2024', url: '/' },
+                { title: 'Building Effective Test Strategies for HCM Transformations', date: 'February 2024', url: '/' },
+                { title: 'Why 60% of HCM Projects Face Quality Issues (And How to Avoid It)', date: 'January 2024', url: '/' }
               ].map((article, idx) => (
-                <div key={idx} className="border border-slate-200 p-6 rounded-lg hover:shadow-lg transition cursor-pointer">
+                <a 
+                  key={idx}
+                  href={article.url}
+                  className="border border-slate-200 p-6 rounded-lg hover:shadow-lg transition cursor-pointer"
+                >
                   <p className="text-sm text-blue-700 font-medium mb-2">{article.date}</p>
                   <h4 className="font-bold text-slate-900 hover:text-blue-700 transition">{article.title}</h4>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -313,7 +364,10 @@ export default function ConsultantWebsite() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Transform Your HR?</h2>
           <p className="text-xl mb-8 text-blue-100">Get a free assessment of your HCM strategy and transformation readiness</p>
-          <button className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition inline-block">
+          <button 
+            onClick={() => setShowCalendly(true)}
+            className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition inline-block"
+          >
             Schedule Free Consultation
           </button>
         </div>
@@ -330,35 +384,34 @@ export default function ConsultantWebsite() {
             <div>
               <h4 className="font-bold mb-3 text-sm">Services</h4>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="/" className="hover:text-white transition">Consulting</a></li>
-                <li><a href="/" className="hover:text-white transition">Training</a></li>
+                <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition">Consulting</button></li>
+                <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition">Training</button></li>
                 <li><a href="/" className="hover:text-white transition">Courses</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-3 text-sm">Resources</h4>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="/" className="hover:text-white transition">Blog</a></li>
-                <li><a href="/" className="hover:text-white transition">Newsletter</a></li>
-                <li><a href="/" className="hover:text-white transition">Case Studies</a></li>
+                <li><button onClick={() => scrollToSection('resources')} className="hover:text-white transition">Blog</button></li>
+                <li><button onClick={() => scrollToSection('resources')} className="hover:text-white transition">Newsletter</button></li>
+                <li><button onClick={() => scrollToSection('impact')} className="hover:text-white transition">Case Studies</button></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-3 text-sm">Connect</h4>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><a href="mailto:senmohasay@gmail.com" className="hover:text-white transition">Email</a></li>
-                <li><a href="https://linkedin.com/in/dipankar-sen-017aa924/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">LinkedIn</a></li>
-                <li><a href="/" className="hover:text-white transition">Calendar</a></li>
+                <li><a href="https://www.linkedin.com/in/dipankar-sen-017aa924" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">LinkedIn</a></li>
+                <li><button onClick={() => setShowCalendly(true)} className="hover:text-white transition">Book a Call</button></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-slate-800 pt-8 text-sm text-slate-400 text-center">
-            <p>&copy; 2026 Dipankar Sen. All rights reserved.</p>
+            <p>&copy; 2024 Dipankar Sen. All rights reserved. | Open to relocation (UK & Europe) | Visa sponsorship available</p>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
