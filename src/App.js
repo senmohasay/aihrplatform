@@ -101,7 +101,7 @@ export default function ConsultantWebsite() {
           </h1>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            25+ years guiding global enterprises through SAP SuccessFactors, Workday, and Oracle HCM transformations. 
+            26+ years guiding global enterprises through SAP SuccessFactors, Workday, and Oracle HCM transformations. 
             From strategy to delivery—helping organizations achieve operational excellence and measurable ROI.
           </p>
 
@@ -408,7 +408,7 @@ export default function ConsultantWebsite() {
           </div>
           
           <div className="border-t border-slate-800 pt-8 text-sm text-slate-400 text-center">
-            <p>&copy; 2024 Dipankar Sen. All rights reserved. | Open to relocation (UK & Europe) | Visa sponsorship available</p>
+            <p>&copy; 2026 Dipankar Sen. All rights reserved.</p>
           </div>
         </div>
       </footer>
