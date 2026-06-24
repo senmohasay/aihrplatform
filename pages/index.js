@@ -351,7 +351,7 @@ export default function AIHRConsultantWebsite() {
             <h2 className="text-2xl font-bold mb-4">Schedule a Consultation</h2>
             <p className="text-slate-600 mb-6">Book a 30-minute call to discuss your AI + HR strategy</p>
             
-            <div className="calendly-inline-widget" data-url="https://calendly.com/senmohasay/30min" style={{minWidth:'320px', height:'630px'}}></div>
+            <div className="calendly-inline-widget" data-url="https://calendly.com/senmohasay/new-meeting" style={{minWidth:'320px', height:'630px'}}></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
           </div>
         </div>
