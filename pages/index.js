@@ -122,13 +122,9 @@ export default function Home() {
               data-ad-slot="YOUR_AD_SLOT_ID_1"
               data-ad-format="auto"
               data-full-width-responsive="true"></ins>
-            useEffect(() => {
-  try {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch (err) {
-    console.error(err);
-  }
-}, []);
+            <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
           </div>
         </section>
 
