@@ -7,13 +7,7 @@ export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
 
   useEffect(() => {
-    // Load Google AdSense script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID';
-    script.crossOrigin = 'anonymous';
-    document.head.appendChild(script);
-
+    
     // Load Calendly script for modal
     const calendlyScript = document.createElement('script');
     calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -37,12 +31,8 @@ export default function Home() {
         <meta name="description" content="26+ years HR transformation expertise. Oracle GenAI Professional. SAP SF, Workday, Oracle HCM specialist." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        {/* Google AdSense */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossOrigin="anonymous"></script>
-        
-{/* AdSense code snippet */}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9738444320278487"
-     crossorigin="anonymous"></script>
+        {/* AdSense code snippet */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9738444320278487" crossorigin="anonymous"></script>
 
         {/* Calendly CSS */}
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
@@ -128,11 +118,17 @@ export default function Home() {
             {/* AdSense Ad Unit 1 */}
             <ins className="adsbygoogle"
               style={{ display: 'block', width: '100%', maxWidth: '728px', height: 'auto' }}
-              data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+              data-ad-client="ca-pub-9738444320278487"
               data-ad-slot="YOUR_AD_SLOT_ID_1"
               data-ad-format="auto"
               data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            useEffect(() => {
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (err) {
+    console.error(err);
+  }
+}, []);
           </div>
         </section>
 
@@ -224,7 +220,7 @@ export default function Home() {
               {/* AdSense Ad Unit 2 */}
               <ins className="adsbygoogle"
                 style={{ display: 'block', width: '100%', maxWidth: '728px', height: 'auto' }}
-                data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                data-ad-client="ca-pub-9738444320278487"
                 data-ad-slot="YOUR_AD_SLOT_ID_2"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
@@ -283,7 +279,7 @@ export default function Home() {
             {/* AdSense Ad Unit 3 */}
             <ins className="adsbygoogle"
               style={{ display: 'block', width: '100%', maxWidth: '728px', height: 'auto' }}
-              data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+              data-ad-client="ca-pub-9738444320278487"
               data-ad-slot="YOUR_AD_SLOT_ID_3"
               data-ad-format="auto"
               data-full-width-responsive="true"></ins>
