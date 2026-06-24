@@ -315,7 +315,7 @@ export default function Home() {
             </div>
             
             <div className="border-t border-slate-800 pt-8 text-sm text-slate-400 text-center">
-              <p>&copy; 2025 AIHR Expert. All rights reserved. | Made with <Heart size={16} className="inline text-red-500" /> for HR Leaders</p>
+              <p>&copy; 2026 AIHR Expert. All rights reserved. | Made with <Heart size={16} className="inline text-red-500" /> for HR Leaders</p>
             </div>
           </div>
         </footer>
