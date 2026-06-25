@@ -317,7 +317,7 @@ export default function AIHRConsultantWebsite() {
         <div className="space-y-6">
           <div className="inline-block">
             <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
-              🤖 Oracle GenAI Professional + HR Expert
+              <Zap size={16} className="text-yellow-400" />🤖 GenAI Professional + HR Expert
             </span>
           </div>
           
