@@ -228,7 +228,7 @@ export default function AIHRConsultantWebsite() {
                 </div>
                 <button 
                   onClick={() => {
-                    navigator.clipboard.writeText(process.env.NEXT_PUBLIC_UPI_ID);
+                    navigator.clipboard.writeText(9836015441@rapl);
                     alert('UPI ID copied! Paste in your payment app.');
                   }}
                   className="w-full bg-green-700 text-white py-2 rounded-lg font-medium hover:bg-green-800 transition"
