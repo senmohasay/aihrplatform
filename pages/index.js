@@ -203,9 +203,9 @@ export default function AIHRConsultantWebsite() {
                 </h3>
                 <div className="bg-slate-50 p-4 rounded space-y-2 text-sm mb-4">
                   <p><strong>Account Name:</strong> Dipankar Sen</p>
-                  <p><strong>Account Number:</strong> 44802113336</p>
-                  <p><strong>IFSC Code:</strong> SBIN0001722</p>
-                  <p><strong>Bank:</strong> State Bank of India</p>
+                  <p><strong>Account Number:</strong> {process.env.NEXT_PUBLIC_BANK_ACCOUNT}</p>
+                  <p><strong>IFSC Code:</strong> {process.env.NEXT_PUBLIC_BANK_IFSC}</p>
+                  <p><strong>Bank:</strong> {process.env.NEXT_PUBLIC_BANK_IFSC}</p>
                   <p><strong>Amount:</strong> ₹{selectedProduct.price}</p>
                 </div>
                 <p className="text-xs text-slate-600 mb-3">
@@ -223,12 +223,12 @@ export default function AIHRConsultantWebsite() {
                   UPI / Google Pay / PhonePe
                 </h3>
                 <div className="bg-slate-50 p-4 rounded mb-4">
-                  <p className="text-lg font-bold text-center text-green-700 mb-2">9836015441@rapl</p>
+                  <p className="text-lg font-bold text-center text-green-700 mb-2">{process.env.NEXT_PUBLIC_UPI_ID}</p>
                   <p className="text-xs text-slate-600 text-center">Click to copy & paste in your payment app</p>
                 </div>
                 <button 
                   onClick={() => {
-                    navigator.clipboard.writeText('9836015441@rapl');
+                    navigator.clipboard.writeText(process.env.NEXT_PUBLIC_UPI_ID);
                     alert('UPI ID copied! Paste in your payment app.');
                   }}
                   className="w-full bg-green-700 text-white py-2 rounded-lg font-medium hover:bg-green-800 transition"
